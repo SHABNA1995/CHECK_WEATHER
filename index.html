@@ -15,6 +15,12 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
+            position:relative;
+        }
+
+        div {
+
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif 
         }
     </style>
 
@@ -34,28 +40,31 @@
 
             </div>
         </form>
-        <H5 CLASS="text-center mt-3"><u>WEATHER DETAILS</u></H5>
-        <h6 class="mt-5 text-center">CITY</h6>
+        <H4 CLASS="text-center mt-3"><u>WEATHER DETAILS</u></H4>
+        <div class=" text-success text-center mt-3" id="divv">
+
+        </div>
+        <h5 class="mt-5 text-center"><u>CITY</u></h5>
         <div id="divC">
 
         </div>
-        <h6 class="mt-5 text-center">COUNTRY</h6>
+        <h5 class="mt-5 text-center"><u>COUNTRY</u></h5>
         <div id="div1">
 
         </div>
-        <h6 class="mt-5 text-center">HUMIDITY</h6>
+        <h5 class="mt-5 text-center"><u>HUMIDITY</u></h5>
         <div id="div2">
 
         </div>
-        <h6 class="mt-5 text-center">TEMPRATURE</h6>
+        <h5 class="mt-5 text-center"><u>TEMPRATURE</u></h5>
         <div id="divT">
 
         </div>
-        <h6 class="mt-5 text-center">WIND</h6>
+        <h5 class="mt-5 text-center"><u>WIND</u></h5>
         <div id="divwind">
 
         </div>
-        <h6 class="mt-5 text-center">PRESSURE</h6>
+        <h5 class="mt-5 text-center"><u>PRESSURE</u></h5>
         <div id="divpre">
 
         </div>
@@ -73,21 +82,19 @@
         function displayWeather(Cdata) {
             country = Cdata.sys.country
             humidity = Cdata.main.humidity
+            feel = Cdata.weather[0].description
             wind = Cdata.wind.speed
             pressure = Cdata.main.pressure
             temp = eval(Cdata.main.temp - 273.15).toFixed()
-            feel = eval(Cdata.main.feels_like - 273.15).toFixed()
             city = Cdata.name
-            // cname=dt.country
-            // ${eval(data.main.temp-273.15).toFixed()}℃,</h2><p>${data.weather[0].description}</p><p>feels like ${eval(data.main.feels_like-273.15).toFixed()}℃</p>`
             console.log(country);
             div1.innerHTML = `<p class="text-center"><b>${country}</b></p>`
             div2.innerHTML = `<p class="text-center"><b>${humidity}%</b></p>`
-            divwind.innerHTML = `<p class="text-center"><b>${wind}</b></p>`
+            divwind.innerHTML = `<p class="text-center"><b>${wind} Kmph</b></p>`
             divpre.innerHTML = `<P class="text-center"><b>${pressure}</b></p>`
-            divT.innerHTML = `<P class="text-center"><b>${temp}℃</b></p>`
+            divT.innerHTML = `<P  class="text-center"><b>${temp}℃</b></p>`
             divC.innerHTML = `<P class="text-center"><b>${city}</b></p>`
-
+            divv.innerHTML = `<h3 class="text-center">${temp}℃<br>${feel}<br></h3>`
         }
     }
     function clear() {
