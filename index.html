@@ -28,8 +28,8 @@
 
             <input type="text" class="text-center mt-3" id="cname" placeholder=" ENTER A CITY">
             <div>
-                <button type="button" onclick=" setData()" class="btn btn-primary  mt-2">SEARCH</button>
-                <button type="submit" onclick="clear()" class="btn btn-primary  mt-2"><i
+                <button type="button" onclick=" setData()" class="btn btn-primary  mt-3">SEARCH</button>
+                <button type="submit" onclick="clear()" class="btn btn-primary  mt-3 mx-3"><i
                         class="fa-solid fa-rotate"></i></button>
 
             </div>
@@ -79,12 +79,13 @@
             feel = eval(Cdata.main.feels_like - 273.15).toFixed()
             city = Cdata.name
             // cname=dt.country
+            // ${eval(data.main.temp-273.15).toFixed()}℃,</h2><p>${data.weather[0].description}</p><p>feels like ${eval(data.main.feels_like-273.15).toFixed()}℃</p>`
             console.log(country);
             div1.innerHTML = `<p class="text-center"><b>${country}</b></p>`
-            div2.innerHTML = `<p class="text-center"><b>${humidity}</b></p>`
+            div2.innerHTML = `<p class="text-center"><b>${humidity}%</b></p>`
             divwind.innerHTML = `<p class="text-center"><b>${wind}</b></p>`
             divpre.innerHTML = `<P class="text-center"><b>${pressure}</b></p>`
-            divT.innerHTML = `<P class="text-center"><b>${temp}</b></p>`
+            divT.innerHTML = `<P class="text-center"><b>${temp}℃</b></p>`
             divC.innerHTML = `<P class="text-center"><b>${city}</b></p>`
 
         }
