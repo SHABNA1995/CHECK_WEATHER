@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9be2a36e8a.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url('./picc.webp');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <h3 class="mt-5 text-center ">CHECK WEATHER</h3>
+
+        <form action="" class="form control container w-50 text-center">
+
+            <input type="text" class="text-center mt-3" id="cname" placeholder=" ENTER A CITY">
+            <div>
+                <button type="button" onclick=" setData()" class="btn btn-primary  mt-2">SEARCH</button>
+                <button type="submit" onclick="clear()" class="btn btn-primary  mt-2"><i
+                        class="fa-solid fa-rotate"></i></button>
+
+            </div>
+        </form>
+        <H5 CLASS="text-center mt-3"><u>WEATHER DETAILS</u></H5>
+        <h6 class="mt-5 text-center">CITY</h6>
+        <div id="divC">
+
+        </div>
+        <h6 class="mt-5 text-center">COUNTRY</h6>
+        <div id="div1">
+
+        </div>
+        <h6 class="mt-5 text-center">HUMIDITY</h6>
+        <div id="div2">
+
+        </div>
+        <h6 class="mt-5 text-center">TEMPRATURE</h6>
+        <div id="divT">
+
+        </div>
+        <h6 class="mt-5 text-center">WIND</h6>
+        <div id="divwind">
+
+        </div>
+        <h6 class="mt-5 text-center">PRESSURE</h6>
+        <div id="divpre">
+
+        </div>
+
+    </div>
+
+
+</body>
+<script>
+
+    function setData() {
+        names = cname.value
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${names}&appid=5fe36b192ffd1c36dffb6752bc1722b2`)
+            .then(data => data.json()).then(data => displayWeather(data))
+        function displayWeather(Cdata) {
+            country = Cdata.sys.country
+            humidity = Cdata.main.humidity
+            wind = Cdata.wind.speed
+            pressure = Cdata.main.pressure
+            temp = eval(Cdata.main.temp - 273.15).toFixed()
+            feel = eval(Cdata.main.feels_like - 273.15).toFixed()
+            city = Cdata.name
+            // cname=dt.country
+            console.log(country);
+            div1.innerHTML = `<p class="text-center"><b>${country}</b></p>`
+            div2.innerHTML = `<p class="text-center"><b>${humidity}</b></p>`
+            divwind.innerHTML = `<p class="text-center"><b>${wind}</b></p>`
+            divpre.innerHTML = `<P class="text-center"><b>${pressure}</b></p>`
+            divT.innerHTML = `<P class="text-center"><b>${temp}</b></p>`
+            divC.innerHTML = `<P class="text-center"><b>${city}</b></p>`
+
+        }
+    }
+    function clear() {
+        cname.value = ""
+    }
+</script>
+
+</html>
